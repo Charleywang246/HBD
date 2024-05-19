@@ -6,11 +6,11 @@ import asyncio
 import requests
 import io
 
-import time
+import threading
 
 s_r = requests.session()
 
-def surf_from_url(url):
+def get_image(url : str, target : list):
     data = io.BytesIO()
     response = s_r.get(url, stream=True)      
     if not response.ok:
@@ -19,11 +19,48 @@ def surf_from_url(url):
     for block in response.iter_content(1024):
         if not block:
             break
-
         data.write(block)
 
     data.seek(0)
-    return pygame.image.load(data)
+    target.append(pygame.image.load(data))
+
+RUN_URLS = [
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (1).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (2).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (3).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (4).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (5).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (6).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (7).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (8).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (9).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (10).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (11).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (12).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (13).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (14).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (15).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (16).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (17).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (18).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (19).png",
+    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (20).png"
+]
+RUN = []
+JUMP_URLS = []
+JUMP = []
+BG_URL = []
+BG = []
+OBSTACLES_URLS = []
+OBSTACLES = []
+BUTTON_URLS = []
+BUTTON = []
+SCENE_URLS = []
+SCENE = []
+run_thread = [threading.Thread(target=get_image(url, RUN)) for url in RUN_URLS]
+for thread in run_thread:
+    thread.start()
+    thread.join()
 
 pygame.init()
 
@@ -35,30 +72,31 @@ pygame.display.set_icon(pygame.image.load("icon.png"))
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 def load_everything():
-    global RUN, JUMP, BACKGROUND, BG, OBSTACLES, OBSTACLES_AD, BUTTON
+    global JUMP, BACKGROUND, BG, OBSTACLES, OBSTACLES_AD, BUTTON, SCENE_RAW, SCENE
 
-    RUN = [
-        pygame.image.load("Run (1).png"),
-        pygame.image.load("Run (2).png"),
-        pygame.image.load("Run (3).png"),
-        pygame.image.load("Run (4).png"),
-        pygame.image.load("Run (5).png"),
-        pygame.image.load("Run (6).png"),
-        pygame.image.load("Run (7).png"),
-        pygame.image.load("Run (8).png"),
-        pygame.image.load("Run (9).png"),
-        pygame.image.load("Run (10).png"),
-        pygame.image.load("Run (11).png"),
-        pygame.image.load("Run (12).png"),
-        pygame.image.load("Run (13).png"),
-        pygame.image.load("Run (14).png"),
-        pygame.image.load("Run (15).png"),
-        pygame.image.load("Run (16).png"),
-        pygame.image.load("Run (17).png"),
-        pygame.image.load("Run (18).png"),
-        pygame.image.load("Run (19).png"),
-        pygame.image.load("Run (20).png")
-    ]
+    # RUN = [
+    #     pygame.image.load("Run (1).png"),
+    #     pygame.image.load("Run (2).png"),
+    #     pygame.image.load("Run (3).png"),
+    #     pygame.image.load("Run (4).png"),
+    #     pygame.image.load("Run (5).png"),
+    #     pygame.image.load("Run (6).png"),
+    #     pygame.image.load("Run (7).png"),
+    #     pygame.image.load("Run (8).png"),
+    #     pygame.image.load("Run (9).png"),
+    #     pygame.image.load("Run (10).png"),
+    #     pygame.image.load("Run (11).png"),
+    #     pygame.image.load("Run (12).png"),
+    #     pygame.image.load("Run (13).png"),
+    #     pygame.image.load("Run (14).png"),
+    #     pygame.image.load("Run (15).png"),
+    #     pygame.image.load("Run (16).png"),
+    #     pygame.image.load("Run (17).png"),
+    #     pygame.image.load("Run (18).png"),
+    #     pygame.image.load("Run (19).png"),
+    #     pygame.image.load("Run (20).png")
+    # ]
+
     JUMP = [
         pygame.image.load("Jump (1).png"),
         pygame.image.load("Jump (2).png"),
@@ -96,19 +134,19 @@ def load_everything():
     BG = pygame.transform.scale(BACKGROUND, (1200,700))
 
     OBSTACLES = [
-        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/H.png"),
-        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/A1.png"),
-        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/P1.png"),
-        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/P2.png"),
-        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/Y1.png"),
-        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/V.png"),
-        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/E.png"),
-        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/R.png"),
-        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/A2.png"),
-        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/D.png"),
-        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/A3.png"),
-        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/Y2.png"),
-        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/cake.png")
+        pygame.image.load("H.png"),
+        pygame.image.load("A1.png"),
+        pygame.image.load("P1.png"),
+        pygame.image.load("P2.png"),
+        pygame.image.load("Y1.png"),
+        pygame.image.load("V.png"),
+        pygame.image.load("E.png"),
+        pygame.image.load("R.png"),
+        pygame.image.load("A2.png"),
+        pygame.image.load("D.png"),
+        pygame.image.load("A3.png"),
+        pygame.image.load("Y2.png"),
+        pygame.image.load("cake.png")
     ]
 
     OBSTACLES_AD = [
@@ -131,9 +169,6 @@ def load_everything():
         pygame.image.load("easy.png"),
         pygame.image.load("again.png")
     ]
-
-def load_start():
-    global SCENE_RAW, SCENE
 
     SCENE_RAW = [
         pygame.image.load("start.png"),
@@ -359,7 +394,6 @@ async def start_menu():
     start = True
     clock = pygame.time.Clock()
 
-    load_start()
     SCREEN.blit(SCENE[0], (0,0))
     pygame.display.update()
     load_everything()
