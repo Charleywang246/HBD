@@ -6,10 +6,13 @@ import asyncio
 import requests
 import io
 
+import time
+
+s_r = requests.session()
+
 def surf_from_url(url):
     data = io.BytesIO()
-
-    response = requests.get(url, stream=True)      
+    response = s_r.get(url, stream=True)      
     if not response.ok:
         print(response)
 
@@ -22,42 +25,42 @@ def surf_from_url(url):
     data.seek(0)
     return pygame.image.load(data)
 
-surf = surf_from_url("https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171_1280.jpg")
-
 pygame.init()
 
 SCREEN_HEIGHT = 700
 SCREEN_WIDTH = 1200
 GAMESPEED = 17
 pygame.display.set_caption("For Vera")
-pygame.display.set_icon(surf)
-# pygame.display.set_icon(pygame.image.load("icon.png"))
+pygame.display.set_icon(pygame.image.load("icon.png"))
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
+def load_everything():
+    global RUN, JUMP, BACKGROUND, BG, OBSTACLES, OBSTACLES_AD, BUTTON
 
-
-RUN = [pygame.image.load("Run (1).png"),
-       pygame.image.load("Run (2).png"),
-       pygame.image.load("Run (3).png"),
-       pygame.image.load("Run (4).png"),
-       pygame.image.load("Run (5).png"),
-       pygame.image.load("Run (6).png"),
-       pygame.image.load("Run (7).png"),
-       pygame.image.load("Run (8).png"),
-       pygame.image.load("Run (9).png"),
-       pygame.image.load("Run (10).png"),
-       pygame.image.load("Run (11).png"),
-       pygame.image.load("Run (12).png"),
-       pygame.image.load("Run (13).png"),
-       pygame.image.load("Run (14).png"),
-       pygame.image.load("Run (15).png"),
-       pygame.image.load("Run (16).png"),
-       pygame.image.load("Run (17).png"),
-       pygame.image.load("Run (18).png"),
-       pygame.image.load("Run (19).png"),
-       pygame.image.load("Run (20).png")
-       ]
-JUMP = [pygame.image.load("Jump (1).png"),
+    RUN = [
+        pygame.image.load("Run (1).png"),
+        pygame.image.load("Run (2).png"),
+        pygame.image.load("Run (3).png"),
+        pygame.image.load("Run (4).png"),
+        pygame.image.load("Run (5).png"),
+        pygame.image.load("Run (6).png"),
+        pygame.image.load("Run (7).png"),
+        pygame.image.load("Run (8).png"),
+        pygame.image.load("Run (9).png"),
+        pygame.image.load("Run (10).png"),
+        pygame.image.load("Run (11).png"),
+        pygame.image.load("Run (12).png"),
+        pygame.image.load("Run (13).png"),
+        pygame.image.load("Run (14).png"),
+        pygame.image.load("Run (15).png"),
+        pygame.image.load("Run (16).png"),
+        pygame.image.load("Run (17).png"),
+        pygame.image.load("Run (18).png"),
+        pygame.image.load("Run (19).png"),
+        pygame.image.load("Run (20).png")
+    ]
+    JUMP = [
+        pygame.image.load("Jump (1).png"),
         pygame.image.load("Jump (2).png"),
         pygame.image.load("Jump (3).png"),
         pygame.image.load("Jump (4).png"),
@@ -87,56 +90,63 @@ JUMP = [pygame.image.load("Jump (1).png"),
         pygame.image.load("Jump (28).png"),
         pygame.image.load("Jump (29).png"),
         pygame.image.load("Jump (30).png")
-        ]
+    ]
 
-BACKGROUND = pygame.image.load("BG.png")
-BG = pygame.transform.scale(BACKGROUND, (1200,700))
+    BACKGROUND = pygame.image.load("BG.png")
+    BG = pygame.transform.scale(BACKGROUND, (1200,700))
 
-SCENE_RAW = [pygame.image.load("start.png"),
-         pygame.image.load("lose.png"),
-         pygame.image.load("end.png"),
-         pygame.image.load("awww.png")
-         ]
-SCENE = [pygame.transform.scale(SCENE_RAW[0], (1200,700)),
-         pygame.transform.scale(SCENE_RAW[1], (1200,700)),
-         pygame.transform.scale(SCENE_RAW[2], (1200,700)),
-         pygame.transform.scale(SCENE_RAW[3], (1200,700))
-         ]
+    OBSTACLES = [
+        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/H.png"),
+        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/A1.png"),
+        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/P1.png"),
+        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/P2.png"),
+        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/Y1.png"),
+        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/V.png"),
+        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/E.png"),
+        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/R.png"),
+        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/A2.png"),
+        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/D.png"),
+        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/A3.png"),
+        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/Y2.png"),
+        surf_from_url("https://raw.githubusercontent.com/Charleywang246/HBD/main/cake.png")
+    ]
 
+    OBSTACLES_AD = [
+        pygame.transform.scale(OBSTACLES[0], (160,220)),
+        pygame.transform.scale(OBSTACLES[1], (180,220)),
+        pygame.transform.scale(OBSTACLES[2], (180,220)),
+        pygame.transform.scale(OBSTACLES[3], (180,220)),
+        pygame.transform.scale(OBSTACLES[4], (180,220)),
+        pygame.transform.scale(OBSTACLES[5], (180,220)),
+        pygame.transform.scale(OBSTACLES[6], (180,220)),
+        pygame.transform.scale(OBSTACLES[7], (180,220)),
+        pygame.transform.scale(OBSTACLES[8], (180,220)),
+        pygame.transform.scale(OBSTACLES[9], (180,220)),
+        pygame.transform.scale(OBSTACLES[10], (180,200)),
+        pygame.transform.scale(OBSTACLES[11], (180,200)),
+        pygame.image.load("cake.png")
+    ]
 
-OBSTACLES = [pygame.image.load("H.png"),
-             pygame.image.load("A1.png"),
-             pygame.image.load("P1.png"),
-             pygame.image.load("P2.png"),
-             pygame.image.load("Y1.png"),
-             pygame.image.load("V.png"),
-             pygame.image.load("E.png"),
-             pygame.image.load("R.png"),
-             pygame.image.load("A2.png"),
-             pygame.image.load("D.png"),
-             pygame.image.load("A3.png"),
-             pygame.image.load("Y2.png"),
-             pygame.image.load("cake.png")
-             
-             ]
+    BUTTON = [
+        pygame.image.load("easy.png"),
+        pygame.image.load("again.png")
+    ]
 
-OBSTACLES_AD = [pygame.transform.scale(OBSTACLES[0], (160,220)),
-                pygame.transform.scale(OBSTACLES[1], (180,220)),
-                pygame.transform.scale(OBSTACLES[2], (180,220)),
-                pygame.transform.scale(OBSTACLES[3], (180,220)),
-                pygame.transform.scale(OBSTACLES[4], (180,220)),
-                pygame.transform.scale(OBSTACLES[5], (180,220)),
-                pygame.transform.scale(OBSTACLES[6], (180,220)),
-                pygame.transform.scale(OBSTACLES[7], (180,220)),
-                pygame.transform.scale(OBSTACLES[8], (180,220)),
-                pygame.transform.scale(OBSTACLES[9], (180,220)),
-                pygame.transform.scale(OBSTACLES[10], (180,200)),
-                pygame.transform.scale(OBSTACLES[11], (180,200)),
-                pygame.image.load("cake.png")
-                ]
-BUTTON = [pygame.image.load("easy.png"),
-              pygame.image.load("again.png")]
+def load_start():
+    global SCENE_RAW, SCENE
 
+    SCENE_RAW = [
+        pygame.image.load("start.png"),
+        pygame.image.load("lose.png"),
+        pygame.image.load("end.png"),
+        pygame.image.load("awww.png")
+    ]
+    SCENE = [
+        pygame.transform.scale(SCENE_RAW[0], (1200,700)),
+        pygame.transform.scale(SCENE_RAW[1], (1200,700)),
+        pygame.transform.scale(SCENE_RAW[2], (1200,700)),
+        pygame.transform.scale(SCENE_RAW[3], (1200,700))
+    ]
 
 class girl:
     X_POS = 80
@@ -348,9 +358,14 @@ async def start_menu():
     global start
     start = True
     clock = pygame.time.Clock()
-    
+
+    load_start()
+    SCREEN.blit(SCENE[0], (0,0))
+    pygame.display.update()
+    load_everything()
+
     while start:
-        SCREEN.blit(SCENE[0], (0,0))
+        
                 
         clock.tick(30)
         pygame.display.update()    
