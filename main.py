@@ -25,42 +25,136 @@ def get_image(url : str, target : list):
     target.append(pygame.image.load(data))
 
 RUN_URLS = [
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (1).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (2).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (3).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (4).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (5).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (6).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (7).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (8).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (9).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (10).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (11).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (12).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (13).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (14).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (15).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (16).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (17).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (18).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (19).png",
-    # "https://raw.githubusercontent.com/Charleywang246/HBD/main/RUN (20).png"
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run1.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run2.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run3.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run4.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run5.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run6.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run7.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run8.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run9.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run10.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run11.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run12.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run13.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run14.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run15.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run16.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run17.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run18.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run19.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Run20.png"
 ]
 RUN = []
-JUMP_URLS = []
+JUMP_URLS = [
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump1.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump2.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump3.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump4.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump5.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump6.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump7.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump8.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump9.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump10.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump11.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump12.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump13.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump14.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump15.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump16.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump17.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump18.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump19.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump20.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump21.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump22.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump23.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump24.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump25.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump26.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump27.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump28.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump29.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Jump30.png"
+]
 JUMP = []
-BG_URL = []
-BG = []
-OBSTACLES_URLS = []
+OBSTACLES_URLS = [
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/H.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/A1.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/P1.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/P2.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Y1.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/V.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/E.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/R.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/A2.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/D.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/A3.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/Y2.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/cake.png"
+]
 OBSTACLES = []
-BUTTON_URLS = []
+BUTTON_URLS = [
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/easy.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/again.png"
+]
 BUTTON = []
-SCENE_URLS = []
-SCENE = []
+SCENE_URLS = [
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/start.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/end.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/lose.png",
+    "https://raw.githubusercontent.com/Charleywang246/HBD/main/awww.png"
+]
+SCENE_RAW = []
+
 run_thread = [threading.Thread(target=get_image(url, RUN)) for url in RUN_URLS]
+jump_thread = [threading.Thread(target=get_image(url, JUMP)) for url in JUMP_URLS]
+obstacle_thread = [threading.Thread(target=get_image(url, OBSTACLES)) for url in OBSTACLES_URLS]
+button_thread = [threading.Thread(target=get_image(url, BUTTON)) for url in BUTTON_URLS]
+scene_thread = [threading.Thread(target=get_image(url, SCENE_RAW)) for url in SCENE_URLS]
 for thread in run_thread:
     thread.start()
+for thread in jump_thread:
+    thread.start()
+
+for thread in button_thread:
+    thread.start()
+
+for thread in obstacle_thread:
+    thread.start()
     thread.join()
+OBSTACLES_AD = [
+    pygame.transform.scale(OBSTACLES[0], (160,220)),
+    pygame.transform.scale(OBSTACLES[1], (180,220)),
+    pygame.transform.scale(OBSTACLES[2], (180,220)),
+    pygame.transform.scale(OBSTACLES[3], (180,220)),
+    pygame.transform.scale(OBSTACLES[4], (180,220)),
+    pygame.transform.scale(OBSTACLES[5], (180,220)),
+    pygame.transform.scale(OBSTACLES[6], (180,220)),
+    pygame.transform.scale(OBSTACLES[7], (180,220)),
+    pygame.transform.scale(OBSTACLES[8], (180,220)),
+    pygame.transform.scale(OBSTACLES[9], (180,220)),
+    pygame.transform.scale(OBSTACLES[10], (180,200)),
+    pygame.transform.scale(OBSTACLES[11], (180,200)),
+    OBSTACLES[12]
+]
+
+for thread in scene_thread:
+    thread.start()
+    thread.join()
+
+SCENE = [
+    pygame.transform.scale(SCENE_RAW[0], (1200,700)),
+    pygame.transform.scale(SCENE_RAW[1], (1200,700)),
+    pygame.transform.scale(SCENE_RAW[2], (1200,700)),
+    pygame.transform.scale(SCENE_RAW[3], (1200,700))
+]
+
+B = []
+BACKGROUND = get_image("https://raw.githubusercontent.com/Charleywang246/HBD/main/BG.png", B)
+BG = pygame.transform.scale(B[0], (1200,700))
 
 pygame.init()
 
@@ -70,118 +164,6 @@ GAMESPEED = 17
 pygame.display.set_caption("For Vera")
 pygame.display.set_icon(pygame.image.load("icon.png"))
 SCREEN = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-
-def load_everything():
-    global JUMP, BACKGROUND, BG, OBSTACLES, OBSTACLES_AD, BUTTON, SCENE_RAW, SCENE
-
-    # RUN = [
-    #     pygame.image.load("Run (1).png"),
-    #     pygame.image.load("Run (2).png"),
-    #     pygame.image.load("Run (3).png"),
-    #     pygame.image.load("Run (4).png"),
-    #     pygame.image.load("Run (5).png"),
-    #     pygame.image.load("Run (6).png"),
-    #     pygame.image.load("Run (7).png"),
-    #     pygame.image.load("Run (8).png"),
-    #     pygame.image.load("Run (9).png"),
-    #     pygame.image.load("Run (10).png"),
-    #     pygame.image.load("Run (11).png"),
-    #     pygame.image.load("Run (12).png"),
-    #     pygame.image.load("Run (13).png"),
-    #     pygame.image.load("Run (14).png"),
-    #     pygame.image.load("Run (15).png"),
-    #     pygame.image.load("Run (16).png"),
-    #     pygame.image.load("Run (17).png"),
-    #     pygame.image.load("Run (18).png"),
-    #     pygame.image.load("Run (19).png"),
-    #     pygame.image.load("Run (20).png")
-    # ]
-
-    JUMP = [
-        pygame.image.load("Jump (1).png"),
-        pygame.image.load("Jump (2).png"),
-        pygame.image.load("Jump (3).png"),
-        pygame.image.load("Jump (4).png"),
-        pygame.image.load("Jump (5).png"),
-        pygame.image.load("Jump (6).png"),
-        pygame.image.load("Jump (7).png"),
-        pygame.image.load("Jump (8).png"),
-        pygame.image.load("Jump (9).png"),
-        pygame.image.load("Jump (10).png"),
-        pygame.image.load("Jump (11).png"),
-        pygame.image.load("Jump (12).png"),
-        pygame.image.load("Jump (13).png"),
-        pygame.image.load("Jump (14).png"),
-        pygame.image.load("Jump (15).png"),
-        pygame.image.load("Jump (16).png"),
-        pygame.image.load("Jump (17).png"),
-        pygame.image.load("Jump (18).png"),
-        pygame.image.load("Jump (19).png"),
-        pygame.image.load("Jump (20).png"),
-        pygame.image.load("Jump (21).png"),
-        pygame.image.load("Jump (22).png"),
-        pygame.image.load("Jump (23).png"),
-        pygame.image.load("Jump (24).png"),
-        pygame.image.load("Jump (25).png"),
-        pygame.image.load("Jump (26).png"),
-        pygame.image.load("Jump (27).png"),
-        pygame.image.load("Jump (28).png"),
-        pygame.image.load("Jump (29).png"),
-        pygame.image.load("Jump (30).png")
-    ]
-
-    BACKGROUND = pygame.image.load("BG.png")
-    BG = pygame.transform.scale(BACKGROUND, (1200,700))
-
-    OBSTACLES = [
-        pygame.image.load("H.png"),
-        pygame.image.load("A1.png"),
-        pygame.image.load("P1.png"),
-        pygame.image.load("P2.png"),
-        pygame.image.load("Y1.png"),
-        pygame.image.load("V.png"),
-        pygame.image.load("E.png"),
-        pygame.image.load("R.png"),
-        pygame.image.load("A2.png"),
-        pygame.image.load("D.png"),
-        pygame.image.load("A3.png"),
-        pygame.image.load("Y2.png"),
-        pygame.image.load("cake.png")
-    ]
-
-    OBSTACLES_AD = [
-        pygame.transform.scale(OBSTACLES[0], (160,220)),
-        pygame.transform.scale(OBSTACLES[1], (180,220)),
-        pygame.transform.scale(OBSTACLES[2], (180,220)),
-        pygame.transform.scale(OBSTACLES[3], (180,220)),
-        pygame.transform.scale(OBSTACLES[4], (180,220)),
-        pygame.transform.scale(OBSTACLES[5], (180,220)),
-        pygame.transform.scale(OBSTACLES[6], (180,220)),
-        pygame.transform.scale(OBSTACLES[7], (180,220)),
-        pygame.transform.scale(OBSTACLES[8], (180,220)),
-        pygame.transform.scale(OBSTACLES[9], (180,220)),
-        pygame.transform.scale(OBSTACLES[10], (180,200)),
-        pygame.transform.scale(OBSTACLES[11], (180,200)),
-        pygame.image.load("cake.png")
-    ]
-
-    BUTTON = [
-        pygame.image.load("easy.png"),
-        pygame.image.load("again.png")
-    ]
-
-    SCENE_RAW = [
-        pygame.image.load("start.png"),
-        pygame.image.load("lose.png"),
-        pygame.image.load("end.png"),
-        pygame.image.load("awww.png")
-    ]
-    SCENE = [
-        pygame.transform.scale(SCENE_RAW[0], (1200,700)),
-        pygame.transform.scale(SCENE_RAW[1], (1200,700)),
-        pygame.transform.scale(SCENE_RAW[2], (1200,700)),
-        pygame.transform.scale(SCENE_RAW[3], (1200,700))
-    ]
 
 class girl:
     X_POS = 80
@@ -390,13 +372,12 @@ async def main(mode):
 
            
 async def start_menu():
-    global start
+    global start, SCENE
     start = True
     clock = pygame.time.Clock()
 
     SCREEN.blit(SCENE[0], (0,0))
     pygame.display.update()
-    load_everything()
 
     while start:
         
